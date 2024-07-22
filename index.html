@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Object Detection</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #webcam {
+            transform: scaleX(-1);
+            border-radius: 10px;
+        }
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scaleX(-1);
+        }
+        .container {
+            position: relative;
+            display: inline-block;
+        }
+        .objects-list {
+            margin-top: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .object-item {
+            margin: 5px 0;
+        }
+        @media (max-width: 640px) {
+            video, canvas {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+</head>
+<body>
+    <div class="container">
+        <video id="webcam" width="640" height="480" autoplay></video>
+        <canvas id="canvas" width="640" height="480"></canvas>
+    </div>
+    <div class="objects-list" id="objects-list">
+        <h2>Detected Objects</h2>
+        <div id="object-items"></div>
+    </div>
+    <script>
+        async function setupWebcam() {
+            const webcamElement = document.getElementById('webcam');
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                webcamElement.srcObject = stream;
+                return new Promise((resolve) => {
+                    webcamElement.onloadedmetadata = () => {
+                        resolve(webcamElement);
+                    };
+                });
+            } catch (error) {
+                alert('Error accessing webcam: ' + error.message);
+                console.error(error);
+            }
+        }
+
+        async function loadModel() {
+            try {
+                const model = await cocoSsd.load();
+                return model;
+            } catch (error) {
+                alert('Error loading model: ' + error.message);
+                console.error(error);
+            }
+        }
+
+        function detectFrame(video, model, canvas, detectedObjects) {
+            model.detect(video).then(predictions => {
+                renderPredictions(predictions, canvas, detectedObjects);
+                setTimeout(() => {
+                    detectFrame(video, model, canvas, detectedObjects);
+                }, 500); // approximately 2 FPS
+            });
+        }
+
+        function renderPredictions(predictions, canvas, detectedObjects) {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+            ctx.drawImage(document.getElementById('webcam'), 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+            predictions.forEach(prediction => {
+                const [x, y, width, height] = prediction.bbox;
+                ctx.beginPath();
+                ctx.rect(x, y, width, height);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = 'green';
+                ctx.fillStyle = 'green';
+                ctx.stroke();
+                ctx.fillText(
+                    `${prediction.class} (${Math.round(prediction.score * 100)}%)`,
+                    x,
+                    y > 10 ? y - 5 : 10
+                );
+
+                if (!detectedObjects[prediction.class]) {
+                    detectedObjects[prediction.class] = new Date().toLocaleTimeString();
+                }
+            });
+
+            updateObjectList(detectedObjects);
+        }
+
+        function updateObjectList(detectedObjects) {
+            const objectItems = document.getElementById('object-items');
+            objectItems.innerHTML = '';
+            Object.keys(detectedObjects).forEach(key => {
+                const item = document.createElement('div');
+                item.className = 'object-item';
+                item.innerText = `${key} - First detected at: ${detectedObjects[key]}`;
+                objectItems.appendChild(item);
+            });
+        }
+
+        async function main() {
+            const detectedObjects = {};
+            const webcam = await setupWebcam();
+            const model = await loadModel();
+            const canvas = document.getElementById('canvas');
+            if (webcam && model) {
+                detectFrame(webcam, model, canvas, detectedObjects);
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
