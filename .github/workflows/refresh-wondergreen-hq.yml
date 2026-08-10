@@ -1,0 +1,99 @@
+name: Refresh Wondergreen HQ assets
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refresh-wondergreen-hq.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install image tools
+        run: python -m pip install --upgrade pip gdown pillow beautifulsoup4
+
+      - name: Download validated self-contained Wondergreen HTML
+        run: |
+          gdown 'https://drive.google.com/uc?id=1pCg8WoKjitqmUC4wtre9dnJS21s8rkZX' -O /tmp/wondergreen_source.html
+          test -s /tmp/wondergreen_source.html
+          echo "Downloaded $(wc -c < /tmp/wondergreen_source.html) bytes"
+
+      - name: Extract and rebuild high-quality images
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          from PIL import Image
+          import base64, io, re, sys
+
+          source = Path('/tmp/wondergreen_source.html')
+          outdir = Path('greenatics-feria/wondergreen/assets')
+          outdir.mkdir(parents=True, exist_ok=True)
+
+          html = source.read_text('utf-8', errors='ignore')
+          soup = BeautifulSoup(html, 'html.parser')
+          embedded = []
+          for tag in soup.find_all('img'):
+              src = tag.get('src', '')
+              if src.startswith('data:image') and ';base64,' in src:
+                  embedded.append(src)
+
+          if len(embedded) != 8:
+              raise SystemExit(f'Expected 8 embedded images, found {len(embedded)}')
+
+          for i, src in enumerate(embedded, 1):
+              payload = src.split(';base64,', 1)[1]
+              raw = base64.b64decode(payload)
+              im = Image.open(io.BytesIO(raw)).convert('RGB')
+              original = im.size
+              if im.width > 1280:
+                  new_h = round(im.height * 1280 / im.width)
+                  im = im.resize((1280, new_h), Image.Resampling.LANCZOS)
+              target = outdir / f'img_{i:02d}.webp'
+              im.save(target, 'WEBP', quality=92, method=6)
+              size = target.stat().st_size
+              if im.width < 1200 or size < 100_000:
+                  raise SystemExit(f'Quality guard failed for {target}: {im.size}, {size} bytes')
+              print(f'{target}: original={original}, hosted={im.size}, bytes={size}')
+          PY
+
+      - name: Verify HTML uses local assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('greenatics-feria/wondergreen/index.html')
+          text = p.read_text('utf-8')
+          refs = re.findall(r'<img[^>]+src="([^"]+)"', text)
+          expected = [f'assets/img_{i:02d}.webp' for i in range(1, 9)]
+          if refs != expected:
+              raise SystemExit(f'Unexpected image refs: {refs}')
+          print('Image references verified:', refs)
+          PY
+
+      - name: Commit HQ assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add greenatics-feria/wondergreen/assets/*.webp
+          if git diff --cached --quiet; then
+            echo 'No asset changes to commit.'
+          else
+            git commit -m 'Upgrade Wondergreen hosted images to HQ'
+            git push origin main
+          fi
