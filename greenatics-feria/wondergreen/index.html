@@ -2,33 +2,159 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wondergreen | Más que NPK</title>
-<meta name="theme-color" content="#0b6b43">
 <style>
-:root{--g:#0b6b43;--gd:#063f2c;--cream:#f7f2e7;--ink:#18372b;--line:#d9d1bc}
-*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif;min-height:100vh;display:grid;place-items:center;padding:24px}
-.card{width:min(760px,100%);background:#fffdf7;border:1px solid var(--line);border-radius:24px;padding:34px;box-shadow:0 18px 60px rgba(15,75,49,.10)}
-.kicker{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--g)}
-h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(38px,8vw,64px);line-height:1.02;color:var(--gd);margin:10px 0 14px}
-p{font-size:18px;line-height:1.55;color:#52645b}.actions{display:grid;gap:12px;margin-top:26px}
-a.btn{display:block;text-align:center;text-decoration:none;font-weight:800;border-radius:14px;padding:16px 18px;border:1px solid var(--g)}
-a.primary{background:var(--g);color:#fff}a.secondary{background:#fff;color:var(--g)}
-.note{margin-top:24px;padding:16px;border-radius:14px;background:#eef6f0;font-size:14px;line-height:1.5;color:#466052}
-small{display:block;margin-top:20px;color:#78887f}
+  html, body { margin:0 !important; padding:0 !important; width:100% !important; background:#eef1ed; }
+  body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+  table { border-collapse:collapse !important; }
+  img { border:0; outline:none; text-decoration:none; -ms-interpolation-mode:bicubic; display:block; }
+  a { color:#075b2c; }
+  .email-shell { width:100%; max-width:680px; margin:0 auto; background:#fffdf8; box-shadow:0 12px 36px rgba(15,62,35,.12); }
+  .pad { padding-left:42px; padding-right:42px; }
+  .copy { font-family:Arial, Helvetica, sans-serif; color:#29332e; font-size:17px; line-height:1.62; }
+  .eyebrow { font-family:Arial, Helvetica, sans-serif; color:#6e8d2d; font-size:12px; line-height:1.2; letter-spacing:1.6px; font-weight:700; text-transform:uppercase; }
+  .h2 { font-family:Arial, Helvetica, sans-serif; color:#064b25; font-size:31px; line-height:1.12; font-weight:800; margin:0; }
+  .lead { font-family:Arial, Helvetica, sans-serif; color:#34423a; font-size:19px; line-height:1.55; }
+  .button { display:inline-block; background:#075b2c; color:#ffffff !important; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:18px; font-weight:700; text-decoration:none; padding:16px 24px; border-radius:8px; letter-spacing:.2px; }
+  .button-secondary { display:inline-block; background:#ffffff; color:#075b2c !important; border:1px solid #86a08f; font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px; font-weight:700; text-decoration:none; padding:14px 18px; border-radius:8px; }
+  .quote { border-left:4px solid #9fbd36; background:#f4f7ec; padding:20px 22px; font-family:Arial, Helvetica, sans-serif; color:#164c2b; font-size:20px; line-height:1.45; font-weight:700; }
+  .card { background:#f7f8f3; border:1px solid #dfe8dc; border-radius:12px; }
+  .small { font-family:Arial, Helvetica, sans-serif; color:#667169; font-size:13px; line-height:1.55; }
+  .divider { height:1px; background:#dfe7df; font-size:0; line-height:0; }
+  .image-wrap { background:#fffdf8; }
+  @media screen and (max-width:700px) {
+    .email-shell { width:100% !important; max-width:100% !important; box-shadow:none !important; }
+    .pad { padding-left:22px !important; padding-right:22px !important; }
+    .h2 { font-size:26px !important; }
+    .copy { font-size:16px !important; }
+    .lead { font-size:18px !important; }
+    .stack, .stack td { display:block !important; width:100% !important; }
+    .stack-spacer { height:12px !important; }
+  }
 </style>
 </head>
 <body>
-<main class="card">
-<div class="kicker">Wondergreen by Greenatics</div>
-<h1>Más que NPK</h1>
-<p>Experiencia comercial autocontenida con imágenes y contenido embebido. Google Drive almacena el archivo, pero no ejecuta HTML como sitio web; por eso esta página evita la pantalla en blanco y entrega el archivo correctamente.</p>
-<div class="actions">
-<a id="download" class="btn primary" href="https://drive.google.com/uc?export=download&id=1pCg8WoKjitqmUC4wtre9dnJS21s8rkZX">Descargar experiencia HTML</a>
-<a class="btn secondary" href="https://drive.google.com/file/d/1pCg8WoKjitqmUC4wtre9dnJS21s8rkZX/view?usp=sharing">Ver archivo en Google Drive</a>
-</div>
-<div class="note"><b>En celular:</b> toca “Descargar experiencia HTML”. Cuando termine la descarga, abre el archivo <b>WONDERGREEN_MAS_QUE_NPK_FERIA_AUTOCONTENIDO.html</b> desde Descargas/Archivos. Todo el contenido visual está incluido dentro del propio HTML.</div>
-<small>Greenatics · Wondergreen · Feria de Negocios Verdes</small>
-</main>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">Más que NPK: conozca cómo los organominerales ocluidos Wondergreen integran nutrición, suelo y manejo por etapas.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef1ed;">
+<tr><td align="center" style="padding:24px 10px 42px;">
+<table role="presentation" class="email-shell" width="680" cellpadding="0" cellspacing="0" border="0">
+
+<tr><td class="pad" style="padding-top:18px;padding-bottom:16px;background:#fbfcf7;border-bottom:1px solid #e2e9df;">
+  <table role="presentation" width="100%"><tr>
+    <td class="eyebrow">WONDERGREEN BY GREENATICS</td>
+    <td align="right" class="small" style="font-weight:700;color:#075b2c;">Fertilizantes organominerales ocluidos</td>
+  </tr></table>
+</td></tr>
+
+<tr><td class="image-wrap"><img src="assets/img_01.webp" width="680" alt="Más que NPK: nutrición organomineral para cultivo, raíces y suelo." style="width:100%;max-width:680px;height:auto;"></td></tr>
+
+<tr><td class="pad" style="padding-top:34px;padding-bottom:38px;">
+  <div class="eyebrow" style="margin-bottom:10px;">ALIMENTAR MEJOR</div>
+  <h1 class="h2" style="font-size:34px;margin-bottom:14px;">Una nutrición más coherente empieza por mirar el sistema completo.</h1>
+  <div class="lead">La concentración de nutrientes importa, pero la respuesta del cultivo también está determinada por la etapa, el suelo, la humedad, las raíces, la ubicación del producto y el manejo.</div>
+  <div style="height:20px;"></div>
+  <div class="quote">No se trata simplemente de aplicar más. Se trata de que cada aplicación tenga una función agronómica clara.</div>
+  <div style="height:24px;"></div>
+  <a class="button" href="#orientacion">Solicitar orientación para mi cultivo</a>
+</td></tr>
+
+<tr><td class="divider"></td></tr>
+<tr><td class="image-wrap"><img src="assets/img_02.webp" width="680" alt="La fórmula no cuenta toda la historia: etapa, suelo, humedad, aplicación y manejo." style="width:100%;max-width:680px;height:auto;"></td></tr>
+
+<tr><td class="pad" style="padding-top:30px;padding-bottom:34px;">
+  <h2 class="h2" style="margin-bottom:12px;">Más allá de la concentración</h2>
+  <div class="copy">Una fórmula describe qué contiene el producto. La recomendación técnica debe explicar además <strong>para qué etapa se selecciona, dónde se aplicará y bajo qué condiciones puede trabajar</strong>.</div>
+  <div style="height:20px;"></div>
+  <table role="presentation" width="100%" class="stack"><tr>
+    <td width="49%" class="card" valign="top" style="padding:20px;">
+      <div class="eyebrow" style="margin-bottom:8px;">ANTES DE APLICAR</div>
+      <div class="copy" style="font-size:15px;line-height:1.55;">Revisar etapa, humedad, drenaje, raíces, historial y objetivo productivo.</div>
+    </td>
+    <td width="2%" class="stack-spacer"></td>
+    <td width="49%" class="card" valign="top" style="padding:20px;">
+      <div class="eyebrow" style="margin-bottom:8px;">DESPUÉS DE APLICAR</div>
+      <div class="copy" style="font-size:15px;line-height:1.55;">Observar respuesta, registrar cambios y ajustar el programa según el lote.</div>
+    </td>
+  </tr></table>
+</td></tr>
+
+<tr><td class="image-wrap"><img src="assets/img_03.webp" width="680" alt="Qué significa organomineral: integración entre materia orgánica y nutrientes minerales." style="width:100%;max-width:680px;height:auto;"></td></tr>
+
+<tr><td class="pad" style="padding-top:30px;padding-bottom:34px;">
+  <h2 class="h2" style="margin-bottom:12px;">No es orgánico contra mineral</h2>
+  <div class="copy">La propuesta organomineral integra una fracción orgánica y nutrientes minerales dentro de una misma formulación. El valor está en construir una lógica que conecte el producto con el suelo, la raíz y la etapa del cultivo.</div>
+  <div style="height:18px;"></div>
+  <div class="quote">La innovación comunicable está en la integración: matriz organomineral, forma peletizada y nutrición organizada por etapas.</div>
+</td></tr>
+
+<tr><td class="image-wrap"><img src="assets/img_04.webp" width="680" alt="Qué significa ocluido: componentes integrados en una matriz compacta y peletizada." style="width:100%;max-width:680px;height:auto;"></td></tr>
+
+<tr><td class="pad" style="padding-top:30px;padding-bottom:34px;">
+  <h2 class="h2" style="margin-bottom:12px;">Oclusión: una estructura, no una promesa mágica</h2>
+  <div class="copy">En los sólidos Wondergreen, los componentes están incorporados dentro de una matriz compacta y peletizada. Esta arquitectura puede favorecer una interacción más gradual con la humedad y el suelo, pero su desempeño sigue dependiendo de las condiciones del lote y del manejo.</div>
+</td></tr>
+
+<tr><td class="image-wrap"><img src="assets/img_05.webp" width="680" alt="La arquitectura importa, pero el manejo también: suelo, humedad, raíces y aplicación." style="width:100%;max-width:680px;height:auto;"></td></tr>
+
+<tr><td class="pad" style="padding-top:30px;padding-bottom:34px;">
+  <h2 class="h2" style="margin-bottom:12px;">El producto trabaja dentro de un sistema</h2>
+  <div class="copy">Para una aplicación edáfica responsable, el suelo debe tener humedad adecuada. En árboles, el producto se distribuye en la zona de corona o gotera, sin tocar directamente el tallo. También deben revisarse drenaje, compactación y estado radicular.</div>
+  <div style="height:18px;"></div>
+  <table role="presentation" width="100%" class="card"><tr><td style="padding:20px 22px;">
+    <div class="copy" style="font-size:15px;line-height:1.65;"><strong style="color:#075b2c;">El principio:</strong> producto correcto + momento correcto + ubicación correcta + humedad + seguimiento.</div>
+  </td></tr></table>
+</td></tr>
+
+<tr><td class="image-wrap"><img src="assets/img_06.webp" width="680" alt="Nutrición Wondergreen por etapas: Compost, 2GROW, 2BALANCE, 2BLOOM y 2FRUIT." style="width:100%;max-width:680px;height:auto;"></td></tr>
+
+<tr><td class="pad" style="padding-top:30px;padding-bottom:36px;">
+  <h2 class="h2" style="margin-bottom:12px;">Un sistema para cada necesidad dominante</h2>
+  <div class="copy">Wondergreen organiza la nutrición para acompañar el establecimiento, el crecimiento, el equilibrio, la floración y la producción. El portafolio sólido se complementa con líquidos cuando la logística, la vía y la etapa lo justifican.</div>
+  <div style="height:22px;"></div>
+  <a class="button" href="#orientacion">Conocer el portafolio Wondergreen</a>
+</td></tr>
+
+<tr><td class="image-wrap"><img src="assets/img_07.webp" width="680" alt="Cada aplicación debe tener una razón agronómica y responder a la etapa del cultivo." style="width:100%;max-width:680px;height:auto;"></td></tr>
+
+<tr><td class="pad" style="padding-top:30px;padding-bottom:38px;">
+  <h2 class="h2" style="margin-bottom:12px;">El costo debe leerse por objetivo agronómico</h2>
+  <div class="copy">El valor de una aplicación también incluye transporte, mano de obra, equipos, tiempo y posibles correcciones. Por eso, optimizar no significa necesariamente aplicar menos: significa <strong>aplicar con una razón clara, observar y ajustar</strong>.</div>
+</td></tr>
+
+<tr><td class="pad" style="padding-top:32px;padding-bottom:34px;background:#eff4e8;">
+  <div class="eyebrow" style="margin-bottom:10px;">CIRCULARIDAD QUE VUELVE AL SUELO</div>
+  <h2 class="h2" style="margin-bottom:12px;">La cosecha sale de la tierra. Parte del valor debe volver a ella.</h2>
+  <div class="copy">Greenatics transforma residuos orgánicos y biomasa residual en valor agrícola. Wondergreen lleva esa circularidad al campo mediante compost, fertilizantes organominerales y soluciones de nutrición por etapas.</div>
+  <div style="height:16px;"></div>
+  <div class="small">El cuidado del suelo es un proceso integral que también depende de materia orgánica, cobertura, humedad, drenaje, raíces, actividad biológica, tiempo y manejo.</div>
+</td></tr>
+
+<tr><td class="image-wrap"><img src="assets/img_08.webp" width="680" alt="Orientación Wondergreen basada en cultivo, etapa, área, municipio y necesidad principal." style="width:100%;max-width:680px;height:auto;"></td></tr>
+
+<tr><td id="orientacion" class="pad" style="padding-top:34px;padding-bottom:40px;text-align:center;">
+  <div class="eyebrow" style="margin-bottom:10px;">ORIENTACIÓN INICIAL</div>
+  <h2 class="h2" style="margin-bottom:14px;">Cuéntenos qué está pasando en su cultivo</h2>
+  <div class="copy" style="max-width:540px;margin:0 auto;">Comparta cultivo, etapa, área, municipio y necesidad principal. Con esa información podremos orientar la línea Wondergreen que conviene evaluar y definir qué datos técnicos faltan.</div>
+  <div style="height:24px;"></div>
+  <a class="button" href="#orientacion">Solicitar orientación para mi cultivo</a>
+  <div style="height:14px;"></div>
+  <table role="presentation" align="center" class="stack"><tr>
+    <td style="padding:4px;"><a class="button-secondary" href="#orientacion">Descargar catálogo</a></td>
+    <td style="padding:4px;"><a class="button-secondary" href="#orientacion">Consultar guías por cultivo</a></td>
+  </tr></table>
+</td></tr>
+
+<tr><td style="padding:24px 34px;background:#073f22;text-align:center;">
+  <div style="font-family:Arial,Helvetica,sans-serif;color:#ffffff;font-size:17px;font-weight:700;line-height:1.4;">Wondergreen by Greenatics</div>
+  <div style="font-family:Arial,Helvetica,sans-serif;color:#cfe2d4;font-size:13px;line-height:1.5;margin-top:5px;">Nutrición por etapas. Valor que vuelve a la tierra.</div>
+  <div style="height:14px;"></div>
+  <div style="font-family:Arial,Helvetica,sans-serif;color:#b6cbbd;font-size:11px;line-height:1.5;">Los resultados dependen del cultivo, etapa, suelo, humedad, riego, drenaje, historial y manejo. Ajuste las recomendaciones a las condiciones específicas del lote.</div>
+  <div style="height:12px;"></div>
+  <div style="font-family:Arial,Helvetica,sans-serif;color:#9cb6a4;font-size:10px;line-height:1.5;">www.greenatics.com.co</div>
+</td></tr>
+
+</table>
+</td></tr></table>
 </body>
 </html>
